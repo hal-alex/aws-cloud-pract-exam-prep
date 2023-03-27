@@ -12,18 +12,9 @@ function App() {
   const [displayQs, setDisplayQs] = useState(false)
 
   const shuffleArray = () => {
-
+    setQuestionsArr(questionsArr.sort(() => Math.random() - 0.5))
     startQuestion()
   }
-
-  // const shuffleArray = () => {
-  //   for (let i = questions.length - 1; i > 0; i--) {
-  //     const j = (Math.floor(Math.random() * (i + 1))[
-  //       (questions[i], questions[j])
-  //     ] = [questions[j], questions[i]])
-  //   }
-  //   startQuestion()
-  // }
 
   const startQuestion = () => {
     setDisplayQs(true)
