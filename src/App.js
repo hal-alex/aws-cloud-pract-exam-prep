@@ -5,9 +5,25 @@ import { questions } from "./Questions"
 function App() {
   const [questionIndex, setQuestionIndex] = useState(0)
 
+  const [questionsArr, setQuestionsArr] = useState(questions)
+
   const [displayWelcomeText, setdisplayWelcomeText] = useState(true)
 
   const [displayQs, setDisplayQs] = useState(false)
+
+  const shuffleArray = () => {
+
+    startQuestion()
+  }
+
+  // const shuffleArray = () => {
+  //   for (let i = questions.length - 1; i > 0; i--) {
+  //     const j = (Math.floor(Math.random() * (i + 1))[
+  //       (questions[i], questions[j])
+  //     ] = [questions[j], questions[i]])
+  //   }
+  //   startQuestion()
+  // }
 
   const startQuestion = () => {
     setDisplayQs(true)
@@ -43,7 +59,11 @@ function App() {
               >
                 Start Questions
               </Button>
-              <Button variant="contained" sx={{ margin: "20px" }}>
+              <Button
+                variant="contained"
+                sx={{ margin: "20px" }}
+                onClick={shuffleArray}
+              >
                 Randomize Questions
               </Button>
             </Box>
@@ -57,10 +77,10 @@ function App() {
               alignItems: "center",
             }}
           >
-            <Typography variant="h3">{questions[questionIndex]}</Typography>
+            <Typography variant="h3">{questionsArr[questionIndex]}</Typography>
             <Typography>What is this AWS resource?</Typography>
             <Typography>
-              Q {questionIndex + 1} out of {questions.length}
+              Q {questionIndex + 1} out of {questionsArr.length}
             </Typography>
             <Button
               variant="contained"
