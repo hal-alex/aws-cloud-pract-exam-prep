@@ -1,4 +1,8 @@
 import { Box, Button, Typography } from "@mui/material"
+import Accordion from "@mui/material/Accordion"
+import AccordionSummary from "@mui/material/AccordionSummary"
+import AccordionDetails from "@mui/material/AccordionDetails"
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import { useState } from "react"
 import { questions } from "./Questions"
 
@@ -11,9 +15,15 @@ function App() {
 
   const [displayQs, setDisplayQs] = useState(false)
 
+  const [reviseArray, setReviseArray] = useState([])
+
   const shuffleArray = () => {
     setQuestionsArr(questionsArr.sort(() => Math.random() - 0.5))
     startQuestion()
+  }
+
+  const addToRevise = () => {
+    setReviseArray([...reviseArray, ", ", questionsArr[questionIndex]])
   }
 
   const startQuestion = () => {
@@ -87,6 +97,25 @@ function App() {
             >
               Previous Question
             </Button>
+            <Button
+              variant="contained"
+              sx={{ margin: "20px" }}
+              onClick={addToRevise}
+            >
+              Add to revise
+            </Button>
+            <Accordion sx={{ maxWidth: "1000px" }}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>Topics to revise</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>{reviseArray}</Typography>
+              </AccordionDetails>
+            </Accordion>
           </Box>
         )}
       </Box>
